@@ -7,5 +7,8 @@ defmodule ResulteerWeb.Router do
 
   scope "/api", ResulteerWeb do
     pipe_through :api
+
+    get "/leagues", LeaguesController, :index
+    get "/leagues/:div/:season/results", LeaguesController, :results
   end
 end

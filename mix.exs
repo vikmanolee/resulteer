@@ -32,6 +32,7 @@ defmodule Resulteer.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:nimble_csv, "~> 0.6"},
       {:phoenix, "~> 1.4.3"},
       {:phoenix_pubsub, "~> 1.1"},
       {:gettext, "~> 0.11"},
