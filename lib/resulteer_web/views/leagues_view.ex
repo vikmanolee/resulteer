@@ -2,6 +2,8 @@ defmodule ResulteerWeb.LeaguesView do
   use ResulteerWeb, :view
 
   alias __MODULE__
+  alias ResulteerWeb.Protobuf.Messages.Results
+  alias ResulteerWeb.Protobuf.Messages.Results.Result
 
   @league_names %{
     "SP1" => "La Liga",
@@ -16,12 +18,6 @@ defmodule ResulteerWeb.LeaguesView do
     }
   end
 
-  def render("results.json", %{results: results}) do
-    %{
-      results: render_many(results, LeaguesView, "result.json", as: :result)
-    }
-  end
-
   def render("league.json", %{league: league}) do
     %{
       id: league.div,
@@ -30,7 +26,31 @@ defmodule ResulteerWeb.LeaguesView do
     }
   end
 
-  def render("result.json", %{result: result}) do
+  def render("results.json", %{results: results}) do
+    %{
+      results: render_many(results, LeaguesView, "result", as: :result)
+    }
+  end
+
+  def render("result", %{result: result}) do
+    property_mapper(result)
+  end
+
+  def render("results.proto", %{results: results}) do
+    results = Enum.map(results,
+      fn result ->
+        result
+        |> property_mapper()
+        |> Result.new()
+      end
+    )
+
+    %{results: results}
+    |> Results.new()
+    |> Results.encode()
+  end
+
+  defp property_mapper(result) do
     %{
       date: result.date,
       homeTeam: result.home_team,

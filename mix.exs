@@ -19,7 +19,7 @@ defmodule Resulteer.MixProject do
   def application do
     [
       mod: {Resulteer.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :exprotobuf, :runtime_tools]
     ]
   end
 
@@ -33,6 +33,7 @@ defmodule Resulteer.MixProject do
   defp deps do
     [
       {:nimble_csv, "~> 0.6"},
+      {:exprotobuf, "~> 1.2.16"},
       {:phoenix, "~> 1.4.3"},
       {:phoenix_pubsub, "~> 1.1"},
       {:gettext, "~> 0.11"},

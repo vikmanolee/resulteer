@@ -3,19 +3,17 @@ defmodule ResulteerWeb.LeaguesController do
 
   alias Resulteer.Data
 
-  def index(conn, params) do
+  def index(conn, _params) do
     leagues = Data.get_leagues()
-
-    format = Map.get(params, "format", "json")
 
     render(conn, "index.json", leagues: leagues)
   end
 
-  def results(conn, %{"div" => league, "season" => season}) do
+  def results(conn, %{"div" => league, "season" => season} = params) do
     results = Data.get_results(league, season)
 
     format = Map.get(params, "format", "json")
 
-    render(conn, "results.json", results: results)
+    render(conn, "results." <> format, results: results)
   end
 end
