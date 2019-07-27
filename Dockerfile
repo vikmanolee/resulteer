@@ -1,7 +1,4 @@
-FROM elixir:1.8.2-alpine as build
-
-# install build dependencies
-#RUN apk add --update git build-base nodejs yarn python
+FROM elixir:1.9-alpine as build
 
 # prepare build dir
 RUN mkdir /app
@@ -13,6 +10,8 @@ RUN mix local.hex --force && \
 
 # set build ENV
 ENV MIX_ENV=prod
+ENV PORT=4040
+ENV DATA_PATH=/data/Data.csv
 
 # install mix dependencies
 COPY mix.exs mix.lock ./
@@ -26,12 +25,15 @@ COPY lib lib
 RUN mix compile
 
 # build release
-COPY rel rel
+#COPY rel rel
 RUN mix release
 
 # prepare release image
 FROM alpine:3.9 AS app
 RUN apk add --update bash openssl
+
+RUN mkdir /data
+COPY priv/Data.csv /data/Data.csv
 
 RUN mkdir /app
 WORKDIR /app

@@ -37,13 +37,15 @@ defmodule ResulteerWeb.LeaguesView do
   end
 
   def render("results.proto", %{results: results}) do
-    results = Enum.map(results,
-      fn result ->
-        result
-        |> property_mapper()
-        |> Result.new()
-      end
-    )
+    results =
+      Enum.map(
+        results,
+        fn result ->
+          result
+          |> property_mapper()
+          |> Result.new()
+        end
+      )
 
     %{results: results}
     |> Results.new()

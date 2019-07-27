@@ -1,8 +1,11 @@
-defmodule Resulteer.Data do
+defmodule Resulteer.Repository do
   alias NimbleCSV.RFC4180, as: CSV
   alias Resulteer.Models.Result
 
-  @file_path "priv/Data.csv"
+  def data_file_path() do
+    Application.get_env(:resulteer, :repository)
+    |> Keyword.get(:path)
+  end
 
   def get_leagues() do
     all_results()
@@ -21,7 +24,7 @@ defmodule Resulteer.Data do
   end
 
   def all_results() do
-    @file_path
+    data_file_path()
     |> File.stream!()
     |> CSV.parse_stream()
     |> Stream.map(&Result.new/1)

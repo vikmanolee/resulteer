@@ -13,6 +13,8 @@ config :resulteer, ResulteerWeb.Endpoint,
   check_origin: false,
   watchers: []
 
+config :resulteer, :repository, path: "priv/Data.csv"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

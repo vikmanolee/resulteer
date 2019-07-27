@@ -1,7 +1,7 @@
 defmodule ResulteerWeb.Protobuf.Messages do
   use Protobuf, """
   message Results {
-		message Result {
+  message Result {
       optional string date = 1;
       optional string homeTeam = 2;
       optional string awayTeam = 3;
