@@ -6,5 +6,7 @@ config :resulteer, ResulteerWeb.Endpoint,
   http: [port: 4002],
   server: false
 
+config :resulteer, :repository, path: "test/TestData.csv"
+
 # Print only warnings and errors during test
 config :logger, level: :warn
