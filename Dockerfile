@@ -42,4 +42,8 @@ COPY --from=build /app/_build/prod/rel/resulteer ./
 RUN chown -R nobody: /app
 USER nobody
 
+EXPOSE 4040
 ENV HOME=/app
+
+ENTRYPOINT ["/app/bin/resulteer"]
+CMD ["start"]
