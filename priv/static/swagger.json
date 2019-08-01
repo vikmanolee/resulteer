@@ -1,0 +1,117 @@
+{
+  "swagger": "2.0",
+  "paths": {},
+  "info": {
+    "version": "1.0",
+    "title": "The Sports Resulteer"
+  },
+  "host": "localhost:4000",
+  "definitions": {
+    "ResultsResponse": {
+      "type": "object",
+      "title": "ResultsResponse",
+      "properties": {
+        "Results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Result"
+          },
+          "description": "The Result details"
+        }
+      },
+      "description": "Response schema for available Results"
+    },
+    "Result": {
+      "type": "object",
+      "title": "Result",
+      "properties": {
+        "homeTeam": {
+          "type": "string",
+          "description": "The home team'` name"
+        },
+        "halfTimeResult": {
+          "type": "string",
+          "description": "The half time result `H`/`A`/`D`"
+        },
+        "halfTimeHomeGoals": {
+          "type": "integer",
+          "description": "The number of goals the home team scored at half time"
+        },
+        "halfTimeAwayGoals": {
+          "type": "integer",
+          "description": "The number of goals the away team scored at half time"
+        },
+        "fullTimeResult": {
+          "type": "string",
+          "description": "The full time result `H`/`A`/`D`"
+        },
+        "fullTimeHomeGoals": {
+          "type": "integer",
+          "description": "The number of goals the home team scored at full time"
+        },
+        "fullTimeAwayGoals": {
+          "type": "integer",
+          "description": "The number of goals the away team scored at full time"
+        },
+        "date": {
+          "type": "string",
+          "description": "The date of the fixture in DD/MM/YYYY format"
+        },
+        "awayTeam": {
+          "type": "string",
+          "description": "The away team`s name"
+        }
+      },
+      "example": {
+        "homeTeam": "Almeria",
+        "halfTimeResult": "D",
+        "halfTimeHomeGoals": 0,
+        "halfTimeAwayGoals": 0,
+        "fullTimeResult": "D",
+        "fullTimeHomeGoals": 1,
+        "fullTimeAwayGoals": 1,
+        "date": "19/08/2016",
+        "awayTeam": "Cadiz"
+      },
+      "description": "A soccer Result"
+    },
+    "LeaguesResponse": {
+      "type": "object",
+      "title": "LeaguesResponse",
+      "properties": {
+        "leagues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/League"
+          },
+          "description": "The Leagues details"
+        }
+      },
+      "description": "Response schema for available Leagues"
+    },
+    "League": {
+      "type": "object",
+      "title": "League",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Full title"
+        },
+        "season": {
+          "type": "string",
+          "description": "Season ID"
+        },
+        "id": {
+          "type": "string",
+          "description": "League ID"
+        }
+      },
+      "example": {
+        "title": "Premier League 2016-2017",
+        "season": "201617",
+        "id": "E0"
+      },
+      "description": "A league - season pair"
+    }
+  }
+}
