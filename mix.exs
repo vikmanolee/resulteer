@@ -9,7 +9,17 @@ defmodule Resulteer.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext, :phoenix_swagger] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+
+      # Docs
+      name: "Resulteer",
+      source_url: "https://github.com/vikmanolee/resulteer",
+      homepage_url: "http://localhost:4000",
+      docs: [
+        main: "Resulteer",
+        logo: "logo.png",
+        extras: ["README.md"]
+      ]
     ]
   end
 
@@ -39,7 +49,8 @@ defmodule Resulteer.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:phoenix_swagger, "~> 0.8"}
+      {:phoenix_swagger, "~> 0.8"},
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
     ]
   end
 end

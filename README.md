@@ -15,6 +15,12 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
   * Install dependencies with `mix deps.get`
   * Test with `mix test`
 
+## To read documentation
+
+  * Install dependencies with `mix deps.get`
+  * Generate docs with `mix docs`
+  * Open them in your browser with `sensible-browser ./doc/index.html`
+
 ## To run a Resulteer service in a dockerized container:
 
   * Build an new images with `docker build -t "resulteer" .`
