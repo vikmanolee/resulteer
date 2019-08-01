@@ -2,15 +2,9 @@ defmodule ResulteerWeb.LeaguesView do
   use ResulteerWeb, :view
 
   alias __MODULE__
+  alias Resulteer.Models.League
   alias ResulteerWeb.Protobuf.Messages.Results
   alias ResulteerWeb.Protobuf.Messages.Results.Result
-
-  @league_names %{
-    "SP1" => "La Liga",
-    "SP2" => "La Liga 2",
-    "E0" => "Premier League",
-    "D1" => "Bundesliga"
-  }
 
   def render("index.json", %{leagues: leagues}) do
     %{
@@ -22,7 +16,7 @@ defmodule ResulteerWeb.LeaguesView do
     %{
       id: league.div,
       season: league.season,
-      title: compile_title(league)
+      title: render_title(league)
     }
   end
 
@@ -66,9 +60,9 @@ defmodule ResulteerWeb.LeaguesView do
     }
   end
 
-  defp compile_title(league) do
+  defp render_title(league) do
     {front, last} = String.split_at(league.season, -2)
     season = front <> "-20" <> last
-    Map.get(@league_names, league.div) <> " " <> season
+    League.real_name(league.div) <> " " <> season
   end
 end

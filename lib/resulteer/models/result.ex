@@ -1,4 +1,9 @@
 defmodule Resulteer.Models.Result do
+  @moduledoc """
+  The Result model as it is extracted from the Data source.
+
+  The properties are columns of the CSV data file.
+  """
   alias __MODULE__
 
   defstruct [
@@ -16,6 +21,12 @@ defmodule Resulteer.Models.Result do
     :ht_r
   ]
 
+  @type t :: %Result{}
+
+  @doc """
+  Creates a new `Result` struct from a raw row.
+  """
+  @spec new(list) :: Result.t()
   def new([id, div, season, date, homeTeam, awayTeam, fTHG, fTAG, fTR, hTHG, hTAG, hTR]),
     do: %Result{
       id: id,

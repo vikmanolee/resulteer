@@ -1,6 +1,5 @@
 defmodule ResulteerWeb.Router do
   use ResulteerWeb, :router
-  alias PhoenixSwagger.Plug.Validate
 
   pipeline :api do
     plug :accepts, ["json"]

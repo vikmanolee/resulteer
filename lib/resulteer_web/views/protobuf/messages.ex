@@ -1,7 +1,11 @@
 defmodule ResulteerWeb.Protobuf.Messages do
+  @moduledoc """
+  The parent module of the Results and single Result modules that are encoded
+  and decoded as per the Protobufer Protocol.
+  """
   use Protobuf, """
   message Results {
-  message Result {
+    message Result {
       optional string date = 1;
       optional string homeTeam = 2;
       optional string awayTeam = 3;
